@@ -20,10 +20,11 @@ https://github.com/ClintonNwokocha/hng_backend_project2.git
 
 ## Usage
 ### API Endpoints
-POST /api/: Creates a new person.
-GET /api/<int:user_id>/: Retrieves the person with the given ID.
-PUT /api/<int:user_id>/update/: Updates the person with the given ID.
-DELETE /api/<int:user_id>/delete/: Deletes the person with the given ID.
+- **Create /api/: Creates a new person. **e.g**: 'https://hngproject2.onrender.com/api/?name=Clinton%20Nwokocha'
+- **Read /api/<int:user_id>/: Retrieves the person with the given ID. **e.g**:
+  "https://hngproject2.onrender.com/api/1/"
+- **Update /api/<int:user_id>/update/: Updates the person with the given ID. **e.g**: "https://hngproject2.onrender.com/api/1/update/?name=Princess%20Nwokocha"
+- **DELETE /api/<int:user_id>/delete/: Deletes the person with the given ID. **eg**: https://hngproject2.onrender.com/api/1/delete/"
 
 ## Testing
 To run the API tests, execute the following command;
