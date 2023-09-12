@@ -30,6 +30,6 @@ To run the API tests, execute the following command;
 python test_api.py
 
 ## UML and ER Diagrams
-see ![UML Diagram](CRUD UML diagram.png) and ![ER Diagram](ER_CRUD.PNG)
+see ![UML Diagram](CRUD_UML.png) and ![ER Diagram](ER_CRUD.PNG)
 
   
