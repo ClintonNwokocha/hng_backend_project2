@@ -9,9 +9,15 @@ import json
 
 # Create Operation
 def create_person(request):
-    name = request.GET.get('name')
-    if not name:
-        return JsonResponse({'error': 'Name is required'}, status=400)
+    if request.method == 'POST':
+        try:
+            data = json.loads(request.body.decode('utf-8'))
+        except json.JSONDecodeError:
+            return JsonResponse({'error': 'Invalid JSON'}, status=400)
+        
+        name = data.get('name', None)
+        if not name:
+            return JsonResponse({'error': 'Name is required'}, status=400)
     
     person = Person.objects.create(name=name)
     return JsonResponse({'id': person.id, 'name': person.name})
