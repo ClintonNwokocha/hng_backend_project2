@@ -7,7 +7,6 @@ import json
 
 # Create your views here.
 
-# Create Operation
 def create_person(request):
     if request.method == 'POST':
         try:
@@ -15,14 +14,15 @@ def create_person(request):
         except json.JSONDecodeError:
             return JsonResponse({'error': 'Invalid JSON'}, status=400)
         
-        name = data.get('name', None)
+        name = data.get('name', None) 
         if not name:
             return JsonResponse({'error': 'Name is required'}, status=400)
-    
-        person = Person.objects.create(name=name)
+        
+        person = Person.objects.create(name=name)  
         return JsonResponse({'id': person.id, 'name': person.name})
     else:
         return JsonResponse({'error': 'This endpoint only supports POST requests.'}, status=400)
+
 
 # Read Operation
 def read_person(request, user_id):
