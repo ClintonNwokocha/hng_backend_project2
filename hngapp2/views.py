@@ -33,20 +33,26 @@ def read_person(request, user_id):
 
 # Update Operation
 def update_person(request, user_id):
-    name = request.GET.get('name')
-    if not name:
-        return JsonResponse({'error': 'Name is required'}, status = 400)
+    if request.method == 'PUT':
+        try:
+            data = json.loads(requet.body.decode('utf-8'))
+        except json.JSONDecodeError:
+            return JonResponse({'error': 'Invalid JSON'}, status=400)
+            
+        name = data.get('name', None)
+        if not name:
+            return JsonResponse({'error': 'Name is required'}, status = 400)
 
-    try:
-        person = Person.objects.get(id=user_id)
+        try:
+            person = Person.objects.get(id=user_id)
 
-    except Person.DoesNotExist:
-        return JsonResponse({'error': 'Person not found'}, status = 404)
+        except Person.DoesNotExist:
+            return JsonResponse({'error': 'Person not found'}, status = 404)
     
-    person.name = name
-    person.save()
+        person.name = name
+        person.save()
 
-    return JsonResponse({'id': person.id, 'name': person.name})
+        return JsonResponse({'id': person.id, 'name': person.name})
 
 # Delete Operation
 def delete_person(request, user_id):
