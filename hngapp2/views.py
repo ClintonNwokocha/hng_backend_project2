@@ -19,8 +19,10 @@ def create_person(request):
         if not name:
             return JsonResponse({'error': 'Name is required'}, status=400)
     
-    person = Person.objects.create(name=name)
-    return JsonResponse({'id': person.id, 'name': person.name})
+        person = Person.objects.create(name=name)
+        return JsonResponse({'id': person.id, 'name': person.name})
+    else:
+        return JsonResponse({'error': 'This endpoint only supports POST requests.'}, status=400)
 
 # Read Operation
 def read_person(request, user_id):
@@ -35,9 +37,9 @@ def read_person(request, user_id):
 def update_person(request, user_id):
     if request.method == 'PUT':
         try:
-            data = json.loads(requet.body.decode('utf-8'))
+            data = json.loads(request.body.decode('utf-8'))
         except json.JSONDecodeError:
-            return JonResponse({'error': 'Invalid JSON'}, status=400)
+            return JsonResponse({'error': 'Invalid JSON'}, status=400)
             
         name = data.get('name', None)
         if not name:
