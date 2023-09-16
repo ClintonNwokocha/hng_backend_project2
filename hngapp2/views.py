@@ -1,3 +1,4 @@
+from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render
 from django.http import JsonResponse, HttpResponse
 from django.views import View
@@ -7,6 +8,7 @@ import json
 
 # Create your views here.
 
+@csrf_exempt
 def create_person(request):
     if request.method == 'POST':
         try:
